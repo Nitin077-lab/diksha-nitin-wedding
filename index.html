@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diksha & Nitin — Wedding Invitation</title>
+<title>#Niksha — Diksha & Nitin Wedding</title>
 <meta name="description" content="You are cordially invited to the wedding celebration of Diksha & Nitin — May 10-12, 2026, Bhopal">
-<meta property="og:title" content="Diksha & Nitin — Wedding">
+<meta property="og:title" content="#Niksha — Diksha & Nitin Wedding">
 <meta property="og:description" content="Join us for three days of joy, tradition, and togetherness. May 10-12, 2026 at Woods Inn Resort, Bhopal.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>🪷</text></svg>">
@@ -29,7 +29,9 @@ body{font-family:var(--ff-body);color:var(--txt2);background:var(--cream);overfl
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,248,240,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.15);transition:all .3s}
 .nav-inner{max-width:1000px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
-.nav-brand{font-family:var(--ff-display);font-size:22px;font-weight:600;color:var(--maroon);background:none;border:none;cursor:pointer;letter-spacing:2px}
+.nav-brand{font-family:var(--ff-display);font-size:22px;font-weight:700;background:linear-gradient(135deg,var(--maroon) 0%,var(--pink-d) 40%,var(--gold) 60%,var(--maroon) 100%);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;border:none;cursor:pointer;letter-spacing:1px;animation:brandShimmer 4s ease-in-out infinite;filter:drop-shadow(0 1px 2px rgba(122,32,72,0.15))}
+@keyframes brandShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.nav-brand .hash{font-weight:400;color:var(--gold);-webkit-text-fill-color:var(--gold);font-style:italic;margin-right:1px}
 .nav-links{display:flex;list-style:none;gap:6px}
 .nav-link{background:none;border:none;cursor:pointer;font-family:var(--ff-body);font-size:14px;font-weight:500;color:var(--txt2);padding:6px 14px;border-radius:20px;letter-spacing:1px;transition:all .25s}
 .nav-link:hover{color:var(--maroon);background:rgba(250,220,230,0.5)}
@@ -299,7 +301,7 @@ function App() {
       {/* NAV */}
       <nav className="nav">
         <div className="nav-inner">
-          <button className="nav-brand" onClick={() => scrollTo("Home")}>#Niksha</button>
+          <button className="nav-brand" onClick={() => scrollTo("Home")}><span className="hash">#</span>Niksha</button>
           <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
             <span/><span/><span/>
           </button>
@@ -440,7 +442,7 @@ function App() {
       <div className="footer">
         <div className="footer-hindi">शुभ विवाह</div>
         <div className="footer-eng">Your gracious presence and blessings are humbly requested</div>
-        <div className="footer-copy">Diksha &amp; Nitin · May 2026 · Bhopal</div>
+        <div className="footer-copy">#Niksha · May 2026 · Bhopal</div>
       </div>
 
       {/* LIGHTBOX */}
