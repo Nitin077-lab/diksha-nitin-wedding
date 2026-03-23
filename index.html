@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diksha & Nitin — Wedding Invitation</title>
+<meta name="description" content="You are cordially invited to the wedding celebration of Diksha & Nitin — May 10-12, 2026, Bhopal">
+<meta property="og:title" content="Diksha & Nitin — Wedding">
+<meta property="og:description" content="Join us for three days of joy, tradition, and togetherness. May 10-12, 2026 at Woods Inn Resort, Bhopal.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>🪷</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.2/babel.min.js"></script>
+<style>
+:root {
+  --cream:#FFF8F0;--cream2:#F5E6D3;--pink-l:#FADCE6;--pink:#F2A6BD;
+  --pink-d:#D4829A;--gold:#C9A84C;--gold-l:#E8D49A;--gold-d:#8B6914;
+  --maroon:#7A2048;--maroon-l:#A0375E;--txt:#3D1A2E;--txt2:#5C3D4E;
+  --ff-display:'Playfair Display',Georgia,serif;
+  --ff-body:'Cormorant Garamond',Georgia,serif;
+  --ff-hindi:'Noto Serif Devanagari',serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);color:var(--txt2);background:var(--cream);overflow-x:hidden}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,248,240,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.15);transition:all .3s}
+.nav-inner{max-width:1000px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-family:var(--ff-display);font-size:22px;font-weight:600;color:var(--maroon);background:none;border:none;cursor:pointer;letter-spacing:2px}
+.nav-links{display:flex;list-style:none;gap:6px}
+.nav-link{background:none;border:none;cursor:pointer;font-family:var(--ff-body);font-size:14px;font-weight:500;color:var(--txt2);padding:6px 14px;border-radius:20px;letter-spacing:1px;transition:all .25s}
+.nav-link:hover{color:var(--maroon);background:rgba(250,220,230,0.5)}
+.nav-link.active{color:var(--maroon);background:var(--pink-l)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:4px;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--maroon);border-radius:2px;transition:all .3s}
+@media(max-width:680px){
+  .hamburger{display:flex}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(255,248,240,0.97);backdrop-filter:blur(12px);flex-direction:column;padding:12px 20px 20px;border-bottom:1px solid rgba(201,168,76,0.15)}
+  .nav-links.show{display:flex}
+  .nav-link{text-align:left;padding:10px 14px;font-size:16px}
+}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;background:linear-gradient(170deg,#FFF0E8 0%,#FADCE6 35%,#FFF8F0 65%,#FADCE6 100%)}
+.hero-om{font-family:var(--ff-hindi);font-size:56px;color:var(--gold);line-height:1;margin-bottom:6px}
+.hero-ganesh{font-family:var(--ff-hindi);font-size:15px;font-weight:600;color:var(--maroon);letter-spacing:2px;margin-bottom:10px}
+.hero-shloka{font-family:var(--ff-hindi);font-size:13px;color:var(--pink-d);line-height:1.9;max-width:480px;font-weight:500;margin-bottom:4px}
+.hero-meaning{font-style:italic;font-size:12.5px;color:var(--txt2);max-width:440px;line-height:1.6;margin-bottom:24px}
+.hero-invite{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--txt2);margin-bottom:8px}
+.hero-subtitle{font-style:italic;font-size:16px;color:var(--txt2);margin-bottom:28px}
+.hero-name{font-family:var(--ff-display);font-size:64px;font-weight:600;color:var(--maroon);line-height:1.15;letter-spacing:1px}
+.hero-amp{font-family:var(--ff-display);font-size:32px;font-style:italic;color:var(--gold);margin:2px 0}
+.hero-date-block{margin-top:30px}
+.hero-date-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--pink-d);margin-bottom:6px}
+.hero-date{font-family:var(--ff-display);font-size:22px;font-weight:500;color:var(--txt);margin-bottom:4px}
+.hero-hindi-date{font-family:var(--ff-hindi);font-size:13px;color:var(--maroon-l);margin-bottom:6px}
+.hero-venue-link{font-size:14px;color:var(--pink-d);font-style:italic}
+.countdown{display:flex;gap:28px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+.cd-unit{text-align:center}
+.cd-num{font-family:var(--ff-display);font-size:44px;font-weight:600;color:var(--maroon);line-height:1;display:block;min-width:60px}
+.cd-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--pink-d);margin-top:6px;display:block}
+@media(max-width:520px){
+  .hero-name{font-size:44px}
+  .cd-num{font-size:32px}
+  .countdown{gap:16px}
+}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:32px 0}
+.div-line{width:100px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.div-diamond{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
+
+/* STORY */
+.story-section{padding:80px 24px;background:linear-gradient(180deg,var(--cream) 0%,#FFF0E8 50%,var(--cream) 100%)}
+.section-title{font-family:var(--ff-display);font-size:36px;font-weight:600;color:var(--maroon);text-align:center;margin-bottom:4px}
+.section-subtitle{text-align:center;font-style:italic;font-size:15px;color:var(--pink-d);margin-bottom:40px}
+.timeline{max-width:600px;margin:0 auto;position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--gold-l),var(--gold),var(--gold-l))}
+.tl-item{position:relative;margin-bottom:36px;padding-left:24px}
+.tl-item::before{content:'';position:absolute;left:-29px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:3px solid var(--cream);box-shadow:0 0 0 2px var(--gold-l)}
+.tl-year{font-family:var(--ff-display);font-size:13px;font-weight:600;color:var(--gold-d);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.tl-title{font-family:var(--ff-display);font-size:22px;font-weight:600;color:var(--maroon);margin-bottom:6px}
+.tl-text{font-size:16px;color:var(--txt2);line-height:1.7}
+
+/* EVENTS */
+.events-section{padding:80px 24px;background:linear-gradient(180deg,#FFF0E8 0%,var(--pink-l) 50%,#FFF0E8 100%)}
+.events-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:24px}
+.event-card{background:rgba(255,248,240,0.85);backdrop-filter:blur(6px);border:1px solid rgba(201,168,76,0.25);border-radius:16px;padding:28px 20px;text-align:center;transition:transform .3s,box-shadow .3s}
+.event-card:hover{transform:translateY(-6px);box-shadow:0 12px 36px rgba(122,32,72,0.1)}
+.ev-icon{font-size:32px;margin-bottom:10px}
+.ev-hindi{font-family:var(--ff-hindi);font-size:20px;font-weight:600;color:var(--maroon);margin-bottom:2px}
+.ev-eng{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--pink-d);margin-bottom:10px}
+.ev-date{font-family:var(--ff-display);font-size:15px;font-weight:600;color:var(--txt);margin-bottom:2px}
+.ev-time{font-size:13px;color:var(--gold-d);font-style:italic;margin-bottom:12px}
+.ev-desc{font-size:14px;color:var(--txt2);line-height:1.65}
+
+/* GALLERY */
+.gallery-section{padding:80px 24px;background:linear-gradient(180deg,var(--cream) 0%,#FFF0E8 100%)}
+.gallery-drop{max-width:800px;margin:0 auto 36px;padding:40px 24px;border:2px dashed var(--gold-l);border-radius:16px;text-align:center;cursor:pointer;transition:all .3s;background:rgba(255,248,240,0.5)}
+.gallery-drop:hover,.gallery-drop.drag-over{border-color:var(--gold);background:rgba(250,220,230,0.2)}
+.drop-icon{font-size:36px;margin-bottom:8px;color:var(--gold)}
+.drop-title{font-family:var(--ff-display);font-size:18px;color:var(--maroon);margin-bottom:4px}
+.drop-sub{font-size:14px;color:var(--txt2)}
+.drop-btn{margin-top:14px;padding:10px 28px;font-family:var(--ff-body);font-size:14px;font-weight:600;color:white;background:var(--maroon);border:none;border-radius:24px;cursor:pointer;letter-spacing:1px;transition:background .3s}
+.drop-btn:hover{background:var(--maroon-l)}
+.gallery-grid{max-width:800px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+.gallery-item{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1;cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-item .overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(122,32,72,0.6) 0%,transparent 50%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:12px}
+.gallery-item:hover .overlay{opacity:1}
+.overlay-name{color:white;font-size:12px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gallery-remove{background:rgba(255,255,255,0.3);border:none;color:white;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0}
+.gallery-remove:hover{background:rgba(255,80,80,0.7)}
+.gallery-empty{text-align:center;padding:40px;color:var(--pink-d);font-style:italic;font-size:16px}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(61,26,46,0.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;cursor:pointer;animation:lbIn .3s ease-out}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+.lightbox img{max-width:90vw;max-height:85vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.lb-close{position:absolute;top:20px;right:24px;background:none;border:none;color:white;font-size:32px;cursor:pointer;opacity:.7;transition:opacity .2s}
+.lb-close:hover{opacity:1}
+.lb-nav{position:absolute;top:50%;background:rgba(255,255,255,0.15);border:none;color:white;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;transition:background .2s;transform:translateY(-50%)}
+.lb-nav:hover{background:rgba(255,255,255,0.3)}
+.lb-prev{left:16px}
+.lb-next{right:16px}
+
+/* VENUE */
+.venue-section{padding:80px 24px;background:linear-gradient(180deg,#FFF0E8 0%,var(--pink-l) 40%,#FFF0E8 100%)}
+.venue-card{max-width:600px;margin:0 auto;background:rgba(255,248,240,0.9);backdrop-filter:blur(6px);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:40px 32px;text-align:center}
+.venue-name{font-family:var(--ff-display);font-size:28px;font-weight:600;color:var(--maroon);margin-bottom:8px}
+.venue-address{font-size:16px;color:var(--txt2);line-height:1.6;margin-bottom:20px}
+.venue-map-link{display:inline-block;padding:12px 32px;font-family:var(--ff-body);font-size:15px;font-weight:600;color:white;background:var(--maroon);border:none;border-radius:28px;text-decoration:none;letter-spacing:1px;transition:background .3s}
+.venue-map-link:hover{background:var(--maroon-l)}
+
+/* FOOTER */
+.footer{text-align:center;padding:40px 24px;background:var(--maroon)}
+.footer-hindi{font-family:var(--ff-hindi);font-size:20px;color:var(--gold);font-weight:600;margin-bottom:6px}
+.footer-eng{font-style:italic;font-size:14px;color:var(--pink-l);margin-bottom:12px}
+.footer-copy{font-size:12px;color:rgba(255,248,240,0.4);letter-spacing:1px}
+
+/* PETALS */
+.petals-container{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+@keyframes petalFall{0%{transform:translateY(-30px) rotate(0deg);opacity:0}8%{opacity:var(--op)}88%{opacity:var(--op)}100%{transform:translateY(100vh) rotate(600deg);opacity:0}}
+.petal{position:absolute;top:-20px;border-radius:50% 0 50% 50%;animation:petalFall linear infinite}
+
+/* FADE IN */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .8s ease-out,transform .8s ease-out}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:520px){
+  .section-title{font-size:28px}
+  .events-grid{grid-template-columns:1fr;max-width:360px}
+  .venue-card{padding:28px 20px}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useRef, useCallback } = React;
+
+/* DATA */
+const SECTIONS = ["Home", "Our Story", "Events", "Gallery", "Venue"];
+
+const EVENTS = [
+  { hindi: "तिलक", eng: "Tilak", date: "May 10, 2026", time: "Evening", icon: "🪷",
+    desc: "The sacred engagement ceremony — a formal blessing of the union by both families, marked with vermillion, gifts, and heartfelt promises." },
+  { hindi: "हल्दी", eng: "Haldi", date: "May 11, 2026", time: "Morning", icon: "☀️",
+    desc: "A vibrant morning ceremony where turmeric paste is lovingly applied, blessing the couple with radiance and joy before their big day." },
+  { hindi: "संगीत & मेहंदी", eng: "Sangeet & Mehendi", date: "May 11, 2026", time: "Evening", icon: "🎶",
+    desc: "An evening of music, dance, and intricate henna art — family and friends come together to celebrate love through rhythm and tradition." },
+  { hindi: "विवाह", eng: "Wedding", date: "May 12, 2026", time: "Evening", icon: "🔥",
+    desc: "The sacred union — taking seven vows around the holy fire, promising a lifetime of love, respect, and togetherness." },
+];
+
+const STORY = [
+  { year: "Sep 2025", title: "First Connection", text: "A match made across miles — two hearts found each other, and the very first conversation felt like coming home." },
+  { year: "Late 2025", title: "Getting to Know", text: "Long calls bridging continents and conversations that turned into something neither could ignore — a beautiful friendship blossoming into love." },
+  { year: "2026", title: "The Decision", text: "With families blessed and hearts certain, the decision was clear — a lifetime together, beginning in the city where roots run deep: Bhopal." },
+  { year: "May 2026", title: "The Wedding", text: "Two souls, rooted in tradition and united by destiny, celebrate their union at Woods Inn Resort — surrounded by everyone they love." },
+];
+
+/* COMPONENTS */
+
+function Countdown({ target }) {
+  const [t, setT] = useState({ d:0, h:0, m:0, s:0 });
+  useEffect(() => {
+    const tick = () => {
+      const diff = new Date(target) - new Date();
+      if (diff <= 0) return;
+      setT({ d: Math.floor(diff/864e5), h: Math.floor((diff%864e5)/36e5), m: Math.floor((diff%36e5)/6e4), s: Math.floor((diff%6e4)/1e3) });
+    };
+    tick(); const id = setInterval(tick, 1000); return () => clearInterval(id);
+  }, [target]);
+  return (
+    <div className="countdown">
+      {[["days",t.d],["hours",t.h],["min",t.m],["sec",t.s]].map(([l,v]) => (
+        <div key={l} className="cd-unit">
+          <span className="cd-num">{String(v).padStart(2,"0")}</span>
+          <span className="cd-label">{l}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Divider() {
+  return (
+    <div className="divider">
+      <span className="div-line"/><span className="div-diamond"/><span className="div-line"/>
+    </div>
+  );
+}
+
+function Petals() {
+  const petals = Array.from({length:20},(_,i) => ({
+    id:i, left:`${Math.random()*100}%`,
+    delay:`${Math.random()*14}s`, dur:`${8+Math.random()*10}s`,
+    sz:8+Math.random()*10, op:0.12+Math.random()*0.18,
+    col:["#FADCE6","#F2A6BD","#FFD6E0","#FFF0E8","#E8C4D0"][i%5],
+  }));
+  return (
+    <div className="petals-container">
+      {petals.map(p => (
+        <div key={p.id} className="petal" style={{
+          left:p.left, width:p.sz, height:p.sz*1.3,
+          background:p.col, "--op":p.op,
+          animationDuration:p.dur, animationDelay:p.delay,
+        }}/>
+      ))}
+    </div>
+  );
+}
+
+function FadeIn({ children, delay=0 }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current; if(!el) return;
+    const obs = new IntersectionObserver(([e]) => { if(e.isIntersecting){setVisible(true);obs.disconnect()} }, {threshold:0.15});
+    obs.observe(el); return () => obs.disconnect();
+  }, []);
+  return (
+    <div ref={ref} className={`fade-in ${visible?"visible":""}`} style={{transitionDelay:`${delay}ms`}}>
+      {children}
+    </div>
+  );
+}
+
+/* MAIN APP */
+function App() {
+  const [active, setActive] = useState("Home");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [photos, setPhotos] = useState([]);
+  const [lightbox, setLightbox] = useState(null);
+  const [dragOver, setDragOver] = useState(false);
+  const refs = useRef({});
+  const fileRef = useRef(null);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const tops = SECTIONS.map(s => {
+        const el = refs.current[s]; return el ? {s, t:el.getBoundingClientRect().top} : null;
+      }).filter(Boolean);
+      const cur = tops.reduce((a,b) => Math.abs(b.t-120) < Math.abs(a.t-120) ? b : a);
+      if(cur) setActive(cur.s);
+    };
+    window.addEventListener("scroll", onScroll, {passive:true});
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollTo = (s) => { refs.current[s]?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); };
+
+  const addPhotos = useCallback((files) => {
+    Array.from(files).forEach(f => {
+      if(!f.type.startsWith("image/")) return;
+      const r = new FileReader();
+      r.onload = (e) => setPhotos(prev => [...prev, {id:Date.now()+Math.random(), src:e.target.result, name:f.name}]);
+      r.readAsDataURL(f);
+    });
+  }, []);
+
+  const handleDrop = useCallback((e) => { e.preventDefault(); setDragOver(false); addPhotos(e.dataTransfer.files); }, [addPhotos]);
+
+  const lbIndex = lightbox ? photos.findIndex(p => p.id === lightbox.id) : -1;
+  const lbPrev = () => { if(lbIndex > 0) setLightbox(photos[lbIndex-1]); };
+  const lbNext = () => { if(lbIndex < photos.length-1) setLightbox(photos[lbIndex+1]); };
+
+  return (
+    <React.Fragment>
+      <Petals/>
+
+      {/* NAV */}
+      <nav className="nav">
+        <div className="nav-inner">
+          <button className="nav-brand" onClick={() => scrollTo("Home")}>D & N</button>
+          <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+            <span/><span/><span/>
+          </button>
+          <ul className={`nav-links ${menuOpen?"show":""}`}>
+            {SECTIONS.map(s => (
+              <li key={s}>
+                <button className={`nav-link ${active===s?"active":""}`} onClick={() => scrollTo(s)}>{s}</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section className="hero" ref={el => refs.current["Home"]=el}>
+        <div className="hero-om">ॐ</div>
+        <div className="hero-ganesh">॥ श्री गणेशाय नमः ॥</div>
+        <div className="hero-shloka">
+          मांगल्यतन्तुनानेन मम जीवनहेतुना ।<br/>
+          कण्ठे बध्नामि सुभगे सञ्जीव शरदः शतम् ॥
+        </div>
+        <div className="hero-meaning">
+          "I tie this sacred thread of marriage around your neck, O maiden,<br/>
+          that you may live a hundred autumns with me."
+        </div>
+        <Divider/>
+        <div className="hero-invite">With the blessings of the Almighty</div>
+        <div className="hero-subtitle">We cordially invite you to celebrate the auspicious union of</div>
+        <div className="hero-name">Diksha</div>
+        <div className="hero-amp">&amp;</div>
+        <div className="hero-name">Nitin</div>
+        <div className="hero-date-block">
+          <Divider/>
+          <div className="hero-date-label">Save the Date</div>
+          <div className="hero-date">May 10 – 12, 2026</div>
+          <div className="hero-hindi-date">वैशाख, विक्रम संवत् २०८३</div>
+          <div className="hero-venue-link">Woods Inn Resort, Bhopal</div>
+        </div>
+        <Countdown target="2026-05-12T18:00:00+05:30"/>
+      </section>
+
+      {/* STORY */}
+      <section className="story-section" ref={el => refs.current["Our Story"]=el}>
+        <div className="section-title">Our Story</div>
+        <div className="section-subtitle">How two paths became one</div>
+        <Divider/>
+        <div className="timeline">
+          {STORY.map((s,i) => (
+            <FadeIn key={i}>
+              <div className="tl-item">
+                <div className="tl-year">{s.year}</div>
+                <div className="tl-title">{s.title}</div>
+                <div className="tl-text">{s.text}</div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+
+      {/* EVENTS */}
+      <section className="events-section" ref={el => refs.current["Events"]=el}>
+        <div className="section-title">Celebrations</div>
+        <div className="section-subtitle">Three days of joy, tradition, and togetherness</div>
+        <Divider/>
+        <div className="events-grid">
+          {EVENTS.map((ev,i) => (
+            <FadeIn key={i} delay={i*100}>
+              <div className="event-card">
+                <div className="ev-icon">{ev.icon}</div>
+                <div className="ev-hindi">{ev.hindi}</div>
+                <div className="ev-eng">{ev.eng}</div>
+                <div className="ev-date">{ev.date}</div>
+                <div className="ev-time">{ev.time}</div>
+                <div className="ev-desc">{ev.desc}</div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+
+      {/* GALLERY */}
+      <section className="gallery-section" ref={el => refs.current["Gallery"]=el}>
+        <div className="section-title">Gallery</div>
+        <div className="section-subtitle">Moments that tell our story</div>
+        <Divider/>
+        <div
+          className={`gallery-drop ${dragOver?"drag-over":""}`}
+          onDragOver={(e) => {e.preventDefault();setDragOver(true)}}
+          onDragLeave={() => setDragOver(false)}
+          onDrop={handleDrop}
+          onClick={() => fileRef.current?.click()}
+        >
+          <div className="drop-icon">📸</div>
+          <div className="drop-title">Share Your Photos</div>
+          <div className="drop-sub">Drag & drop images here, or click to browse</div>
+          <button className="drop-btn" onClick={(e) => {e.stopPropagation();fileRef.current?.click()}}>
+            Upload Photos
+          </button>
+          <input ref={fileRef} type="file" accept="image/*" multiple style={{display:"none"}}
+            onChange={(e) => {addPhotos(e.target.files);e.target.value=""}}/>
+        </div>
+
+        {photos.length > 0 ? (
+          <div className="gallery-grid">
+            {photos.map(p => (
+              <div key={p.id} className="gallery-item" onClick={() => setLightbox(p)}>
+                <img src={p.src} alt={p.name}/>
+                <div className="overlay">
+                  <span className="overlay-name">{p.name}</span>
+                  <button className="gallery-remove" onClick={(e) => {e.stopPropagation();setPhotos(prev => prev.filter(x => x.id!==p.id))}}>✕</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="gallery-empty">No photos yet — be the first to add memories!</div>
+        )}
+      </section>
+
+      {/* VENUE */}
+      <section className="venue-section" ref={el => refs.current["Venue"]=el}>
+        <div className="section-title">Venue</div>
+        <div className="section-subtitle">Where it all comes together</div>
+        <Divider/>
+        <FadeIn>
+          <div className="venue-card">
+            <div className="ev-icon" style={{fontSize:"40px",marginBottom:"14px"}}>🏨</div>
+            <div className="venue-name">Woods Inn Resort</div>
+            <div className="venue-address">Bhopal, Madhya Pradesh, India</div>
+            <a className="venue-map-link" href="https://www.google.com/maps/search/Woods+Inn+Resort+Bhopal" target="_blank" rel="noopener noreferrer">
+              View on Google Maps
+            </a>
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* FOOTER */}
+      <div className="footer">
+        <div className="footer-hindi">शुभ विवाह</div>
+        <div className="footer-eng">Your gracious presence and blessings are humbly requested</div>
+        <div className="footer-copy">Diksha &amp; Nitin · May 2026 · Bhopal</div>
+      </div>
+
+      {/* LIGHTBOX */}
+      {lightbox && (
+        <div className="lightbox" onClick={() => setLightbox(null)}>
+          <button className="lb-close" onClick={() => setLightbox(null)}>✕</button>
+          {lbIndex > 0 && <button className="lb-nav lb-prev" onClick={(e) => {e.stopPropagation();lbPrev()}}>‹</button>}
+          <img src={lightbox.src} alt={lightbox.name} onClick={(e) => e.stopPropagation()}/>
+          {lbIndex < photos.length-1 && <button className="lb-nav lb-next" onClick={(e) => {e.stopPropagation();lbNext()}}>›</button>}
+        </div>
+      )}
+    </React.Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
