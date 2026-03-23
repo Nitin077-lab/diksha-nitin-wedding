@@ -101,22 +101,13 @@ body{font-family:var(--ff-body);color:var(--txt2);background:var(--cream);overfl
 
 /* GALLERY */
 .gallery-section{padding:80px 24px;background:linear-gradient(180deg,var(--cream) 0%,#FFF0E8 100%)}
-.gallery-drop{max-width:800px;margin:0 auto 36px;padding:40px 24px;border:2px dashed var(--gold-l);border-radius:16px;text-align:center;cursor:pointer;transition:all .3s;background:rgba(255,248,240,0.5)}
-.gallery-drop:hover,.gallery-drop.drag-over{border-color:var(--gold);background:rgba(250,220,230,0.2)}
-.drop-icon{font-size:36px;margin-bottom:8px;color:var(--gold)}
-.drop-title{font-family:var(--ff-display);font-size:18px;color:var(--maroon);margin-bottom:4px}
-.drop-sub{font-size:14px;color:var(--txt2)}
-.drop-btn{margin-top:14px;padding:10px 28px;font-family:var(--ff-body);font-size:14px;font-weight:600;color:white;background:var(--maroon);border:none;border-radius:24px;cursor:pointer;letter-spacing:1px;transition:background .3s}
-.drop-btn:hover{background:var(--maroon-l)}
 .gallery-grid{max-width:800px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
 .gallery-item{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1;cursor:pointer}
 .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gallery-item:hover img{transform:scale(1.08)}
 .gallery-item .overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(122,32,72,0.6) 0%,transparent 50%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:12px}
-.gallery-item:hover .overlay{opacity:1}
+.gallery-item:hover .overlay{opacity:1 !important}
 .overlay-name{color:white;font-size:12px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.gallery-remove{background:rgba(255,255,255,0.3);border:none;color:white;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0}
-.gallery-remove:hover{background:rgba(255,80,80,0.7)}
 .gallery-empty{text-align:center;padding:40px;color:var(--pink-d);font-style:italic;font-size:16px}
 
 /* LIGHTBOX */
@@ -165,7 +156,7 @@ body{font-family:var(--ff-body);color:var(--txt2);background:var(--cream);overfl
 <body>
 <div id="root"></div>
 <script type="text/babel">
-const { useState, useEffect, useRef, useCallback } = React;
+const { useState, useEffect, useRef } = React;
 
 /* DATA */
 const SECTIONS = ["Home", "Our Story", "Events", "Gallery", "Venue"];
@@ -259,11 +250,8 @@ function FadeIn({ children, delay=0 }) {
 function App() {
   const [active, setActive] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [photos, setPhotos] = useState([]);
   const [lightbox, setLightbox] = useState(null);
-  const [dragOver, setDragOver] = useState(false);
   const refs = useRef({});
-  const fileRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -279,16 +267,20 @@ function App() {
 
   const scrollTo = (s) => { refs.current[s]?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); };
 
-  const addPhotos = useCallback((files) => {
-    Array.from(files).forEach(f => {
-      if(!f.type.startsWith("image/")) return;
-      const r = new FileReader();
-      r.onload = (e) => setPhotos(prev => [...prev, {id:Date.now()+Math.random(), src:e.target.result, name:f.name}]);
-      r.readAsDataURL(f);
-    });
-  }, []);
+  /*
+   * ✅ TO ADD PHOTOS: 
+   * 1. Create an "images" folder in your GitHub repo
+   * 2. Upload your photos there (e.g. images/photo1.jpg)
+   * 3. Add entries to this PHOTOS array below
+   */
+  const PHOTOS = [
+    // { src: "images/photo1.jpg", caption: "Our first meeting" },
+    // { src: "images/photo2.jpg", caption: "Engagement day" },
+    // { src: "images/photo3.jpg", caption: "With family" },
+    // ↑ Uncomment and edit these, or add your own!
+  ];
 
-  const handleDrop = useCallback((e) => { e.preventDefault(); setDragOver(false); addPhotos(e.dataTransfer.files); }, [addPhotos]);
+  const photos = PHOTOS.map((p,i) => ({...p, id:i}));
 
   const lbIndex = lightbox ? photos.findIndex(p => p.id === lightbox.id) : -1;
   const lbPrev = () => { if(lbIndex > 0) setLightbox(photos[lbIndex-1]); };
@@ -387,37 +379,24 @@ function App() {
         <div className="section-title">Gallery</div>
         <div className="section-subtitle">Moments that tell our story</div>
         <Divider/>
-        <div
-          className={`gallery-drop ${dragOver?"drag-over":""}`}
-          onDragOver={(e) => {e.preventDefault();setDragOver(true)}}
-          onDragLeave={() => setDragOver(false)}
-          onDrop={handleDrop}
-          onClick={() => fileRef.current?.click()}
-        >
-          <div className="drop-icon">📸</div>
-          <div className="drop-title">Share Your Photos</div>
-          <div className="drop-sub">Drag & drop images here, or click to browse</div>
-          <button className="drop-btn" onClick={(e) => {e.stopPropagation();fileRef.current?.click()}}>
-            Upload Photos
-          </button>
-          <input ref={fileRef} type="file" accept="image/*" multiple style={{display:"none"}}
-            onChange={(e) => {addPhotos(e.target.files);e.target.value=""}}/>
-        </div>
 
         {photos.length > 0 ? (
           <div className="gallery-grid">
             {photos.map(p => (
-              <div key={p.id} className="gallery-item" onClick={() => setLightbox(p)}>
-                <img src={p.src} alt={p.name}/>
-                <div className="overlay">
-                  <span className="overlay-name">{p.name}</span>
-                  <button className="gallery-remove" onClick={(e) => {e.stopPropagation();setPhotos(prev => prev.filter(x => x.id!==p.id))}}>✕</button>
+              <FadeIn key={p.id} delay={p.id*80}>
+                <div className="gallery-item" onClick={() => setLightbox(p)}>
+                  <img src={p.src} alt={p.caption || ""}/>
+                  {p.caption && (
+                    <div className="overlay" style={{opacity:1}}>
+                      <span className="overlay-name">{p.caption}</span>
+                    </div>
+                  )}
                 </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
         ) : (
-          <div className="gallery-empty">No photos yet — be the first to add memories!</div>
+          <div className="gallery-empty">Photos coming soon — stay tuned!</div>
         )}
       </section>
 
@@ -450,16 +429,14 @@ function App() {
         <div className="lightbox" onClick={() => setLightbox(null)}>
           <button className="lb-close" onClick={() => setLightbox(null)}>✕</button>
           {lbIndex > 0 && <button className="lb-nav lb-prev" onClick={(e) => {e.stopPropagation();lbPrev()}}>‹</button>}
-          <img src={lightbox.src} alt={lightbox.name} onClick={(e) => e.stopPropagation()}/>
+          <img src={lightbox.src} alt={lightbox.caption || ""} onClick={(e) => e.stopPropagation()}/>
           {lbIndex < photos.length-1 && <button className="lb-nav lb-next" onClick={(e) => {e.stopPropagation();lbNext()}}>›</button>}
         </div>
       )}
     </React.Fragment>
   );
 }
-<div style={{fontFamily:"var(--ff-hindi)",fontSize:"15px",color:"var(--gold-l)",marginTop:"10px",letterSpacing:"1px"}}>
-  मेरे भैया की शादी में जरूर जरूर आना... — Naitik & Nandini 💕
-</div>
+
 ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
 </script>
 </body>
